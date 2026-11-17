@@ -1,5 +1,13 @@
 # T2CAN Universal v3.29.1
 
+## Dashboard topology capability table and Chinese model-label correction — 2026-11-17
+
+- Body + Chassis capability card now shows **NAG KILLER ✓ AVAILABLE**, matching the shipped firmware gate: `vehicleProfileNagTsl9Supported()` returns true for every valid Standard Body + Chassis profile (TSL9 on Chassis CAN B), and `vehicleProfileNagSupported()` is therefore true on both Standard topologies. The previous "—" row and the "Nag Killer configuration" label on Party + Chassis implied a false exclusivity with Advanced EAP.
+- Body + Chassis card subtitle changed to "Standard 3/Y full-feature configuration" to reflect the true capability set (NAG TSL9 + ADV EAP + Pedal Map + EU Unlock). The Party + Chassis card subtitle changed from "Nag Killer configuration" to "Torque-method Nag · Advanced EAP unavailable" so the two cards describe their Nag method rather than implying Nag Killer is exclusive to Party + Chassis.
+- Front-end `TOPOLOGIES[2].nag` corrected from `false` to `true` in `dashboard_source.html`, `docs/index.html`, and the v3.8 preview artifact so the setup wizard, profile chips, and quick-tile gating agree with firmware.
+- Chinese i18n: `"Model Y L"` was translated as "Model Y (老款带拨杆)" with badge "Y老款", which collides with the real legacy profile. Corrected to "Model Y L (长轴距版 · 非老款)" with badge "YL"; "Model Y Legacy / Model Y 老款 (带拨杆)" is unchanged.
+- Regenerated `index_html.h` from the corrected source (zlib-9 fallback; zopfli not installed on this host). Firmware runtime gating was not modified.
+
 ## Continuous AP brake reception compatibility — 2026-10-11
 
 - Observe ESP_status 0x145 driverBrakeApply from either physical CAN port: Body/Party CAN A or Chassis CAN B. Decode byte 3 bits 5..6 only from an eight-byte standard data frame; 1 means released, 2 means applied, and 0/3 remain invalid.

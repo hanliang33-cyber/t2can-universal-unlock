@@ -508,8 +508,8 @@ body.t2-2027 .panel{scroll-padding-bottom:calc(100px + env(safe-area-inset-botto
 <div class="topologyStep" id="topologyStep">
 <div class="stepTitle">CAN Connection</div><div class="stepSub">Select the CAN buses wired to T-2CAN. The connection determines which features are available.</div>
 <div class="topologyChoices">
-<button class="topologyChoice" data-topology="BODY_CHASSIS"><div class="t1">Body CAN + Chassis CAN</div><div class="t2">Standard 3/Y configuration</div><div class="capList"><div class="capLine"><span>NAG KILLER</span><span class="no">—</span></div><div class="capLine"><span>ADV EAP</span><span class="yes">✓ AVAILABLE</span></div><div class="capLine"><span>EU UNLOCK</span><span class="yes">✓ AVAILABLE</span></div></div></button>
-<button class="topologyChoice" data-topology="PARTY_CHASSIS"><div class="t1">Party CAN + Chassis CAN</div><div class="t2">Nag Killer configuration</div><div class="capList"><div class="capLine"><span>NAG KILLER</span><span class="yes">✓ AVAILABLE</span></div><div class="capLine"><span>ADV EAP</span><span class="no">—</span></div><div class="capLine"><span>EU UNLOCK</span><span class="yes">✓ AVAILABLE</span></div></div></button>
+<button class="topologyChoice" data-topology="BODY_CHASSIS"><div class="t1">Body CAN + Chassis CAN</div><div class="t2">Standard 3/Y full-feature configuration</div><div class="capList"><div class="capLine"><span>NAG KILLER</span><span class="yes">✓ AVAILABLE</span></div><div class="capLine"><span>ADV EAP</span><span class="yes">✓ AVAILABLE</span></div><div class="capLine"><span>EU UNLOCK</span><span class="yes">✓ AVAILABLE</span></div></div></button>
+<button class="topologyChoice" data-topology="PARTY_CHASSIS"><div class="t1">Party CAN + Chassis CAN</div><div class="t2">Torque-method Nag · Advanced EAP unavailable</div><div class="capList"><div class="capLine"><span>NAG KILLER</span><span class="yes">✓ AVAILABLE</span></div><div class="capLine"><span>ADV EAP</span><span class="no">—</span></div><div class="capLine"><span>EU UNLOCK</span><span class="yes">✓ AVAILABLE</span></div></div></button>
 </div></div>
 <div class="highlandTurnStep" id="highlandTurnStep">
 <div class="stepTitle">Model 3 Highland · Turn Signal Controls</div>
@@ -1732,7 +1732,7 @@ setInterval(()=>{if(universalBootReady){pollTick(false);renderHeartbeatSnapshot(
   };
   const TOPOLOGIES={
     1:{id:1,key:'YL_PARTY_VH',name:'Party + VH',canA:'CAN A · PARTY',canB:'CAN B · VH',nag:true,adv:true,eu:true,body:false},
-    2:{id:2,key:'BODY_CHASSIS',name:'Body + Chassis',canA:'CAN A · BODY',canB:'CAN B · CHASSIS',nag:false,adv:true,eu:true,body:true},
+    2:{id:2,key:'BODY_CHASSIS',name:'Body + Chassis',canA:'CAN A · BODY',canB:'CAN B · CHASSIS',nag:true,adv:true,eu:true,body:true},
     3:{id:3,key:'PARTY_CHASSIS',name:'Party + Chassis',canA:'CAN A · PARTY',canB:'CAN B · CHASSIS',nag:true,adv:false,eu:true,body:false}
   };
   const KEY_TO_ID=Object.fromEntries(Object.values(PROFILES).map(p=>[p.key,p.id]));
@@ -1990,4 +1990,102 @@ setInterval(()=>{if(universalBootReady){pollTick(false);renderHeartbeatSnapshot(
 })();</script>
 
 
+
+
+
+<style id="t2-i18n-style">
+.langToggle{margin-left:auto;margin-right:8px;padding:3px 9px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:10px;font-weight:650;cursor:pointer;line-height:1.2;transition:all .15s ease}
+.langToggle:hover{border-color:var(--muted2);opacity:.9}
+</style>
+<script id="t2-i18n-engine">
+(()=>{
+  const DICT = {"TESLA UNLOCK":"TESLA 功能解锁","PROFILE SETUP MODE":"车型配置引导模式","FIRST BOOT":"首次开机引导","RE-CONFIG":"重新配置","Select your vehicle.":"选择您的特斯拉车型","A vehicle profile is required before T-2CAN can initialize CAN functions. Choose the exact vehicle family below.":"在 T-2CAN 初始化 CAN 总线功能前需选择车型方案。请在下方选择具体车型：","VEHICLE FUNCTIONS PAUSED":"车辆功能暂停中","Vehicle functions start only after you save the setup and T-2CAN restarts.":"保存配置并重启 T-2CAN 后，车辆解锁功能方可生效。","MAJOR FIRMWARE UPDATE":"固件重大版本升级","T-2CAN has been upgraded to the new Universal firmware architecture.":"T-2CAN 已升级至全新通用固件架构。","Previous firmware settings and saved configuration have been erased to prevent incompatible settings from being carried over.":"已自动清理旧版不兼容配置，以保证硬件运行稳定可靠。","Please select the exact vehicle model before continuing.":"请在继续前选择正确的车辆型号。","CAN transmission and injection remain disabled until a vehicle profile is selected and T-2CAN reboots.":"在选定车型并重启前，CAN 报文发送与注入功能保持静默禁用。","Continue":"继续","CONFIRM VEHICLE PROFILE":"确认车型配置","Verify the exact vehicle and CAN topology before rebooting.":"重启前请再次核对所选车型及 CAN 总线物理接线拓扑。","Back":"返回","Confirm & Reboot":"确认并重启","Rebooting T-2CAN":"正在重启 T-2CAN","Applying vehicle profile before CAN initialization…":"正在应用车型方案并初始化 CAN 驱动…","Connecting…":"正在连接…","Autopilot off":"自动辅助驾驶已关闭","Standby":"待机中","Waiting for Autopilot to engage.":"等待 Autopilot 开启…","Stock torque Nm":"原厂扭矩 (Nm)","Waiting for CAN data":"等待 CAN 数据…","Connecting to device…":"正在连接设备…","Profile":"车型配置","Active Profile":"当前车型配置","Model Y L":"Model Y L (长轴距版 · 非老款)","Fixed · Party CAN + VH CAN":"固定拓扑 · 娱乐总线 (Party) + 整车总线 (VH)","YL":"YL","Model Y Juniper":"Model Y 焕新版 (Juniper)","Choose CAN connection next":"下一步选择 CAN 接线","Body + Chassis or Party + Chassis":"车身+底盘 或 娱乐+底盘","YJ":"Y焕新","Model Y Legacy":"Model Y 老款 (带拨杆)","Model 3 Highland":"Model 3 焕新版 (Highland)","3H":"3焕新","Model 3 Legacy":"Model 3 老款 (带拨杆)","3L":"3老款","CAN Connection":"CAN 总线接线拓扑","Select the CAN buses wired to T-2CAN. The connection determines which features are available.":"选择连接至 T-2CAN 的 CAN 总线。不同的物理接线决定了可用的功能特性：","Body CAN + Chassis CAN":"车身总线 (Body) + 底盘总线 (Chassis)","Standard 3/Y full-feature configuration":"Model 3/Y 标准双总线全功能方案 (推荐)","NAG KILLER":"脱手提醒消除","ADV EAP":"高阶 EAP 辅助驾驶","✓ AVAILABLE":"✓ 支持可用","EU UNLOCK":"欧标/国标 R79 解锁","Party CAN + Chassis CAN":"娱乐总线 (Party) + 底盘总线 (Chassis)","Party CAN + VH CAN":"娱乐总线 (Party) + 整车总线 (VH)","Torque-method Nag · Advanced EAP unavailable":"脱手消除走扭矩法 · 不支持高阶 EAP","Model 3 Highland · Turn Signal Controls":"Model 3 焕新版 · 转向灯控制方式","Highland exists in both configurations. Select what is physically installed on this vehicle.":"焕新版支持两种转向控制。请选择车辆实际安装的硬件控制方式：","STALKLESS · turn signal transport 0x3C2":"方向盘按键 / 屏幕换挡 (无拨杆 0x3C2 协议)","STALK · turn signal transport 0x249":"实体转向拨杆 (加装原厂拨杆 0x249 协议)","Steering wheel buttons":"方向盘按键 (无拨杆)","Turn stalk":"实体转向拨杆","Save Profile & Reboot":"保存车型配置并重启","Retry Status":"重试连接","Factory Reset":"恢复出厂设置","Cancel Profile Change":"取消车型更改","Change your vehicle selection here when needed.":"如需更换车型或接线拓扑，可随时在此重新选择。","Change Profile":"更改车型配置","Change profile":"更改配置","Home":"主页","Devices":"外设设备","Settings":"系统设置","LAB":"实验室","AUTOPILOT":"自动辅助驾驶","Continuous AP":"连续自动驾驶 (变道自动续航)","Auto Blinker":"免确认打灯自动变道","Confirm-Free Auto Lane Change":"免微转方向盘自动变道","Confirm-Free":"免确认打灯变道","Nag Killer":"脱手提醒消除 (免握盘)","Nag Killer Mode":"脱手消除模式","S3XY Buttons":"S3XY 实体按键联动","S3XY Buttons via BLE":"S3XY 蓝牙实体按键","Paired Buttons":"已配对按键","Scan for Buttons":"扫描新按键","Pair New Button":"配对新按键","No buttons paired yet":"暂无已配对的按键","Ready to add an S3XY Button":"准备配对 S3XY 按键","Scanning for BLE buttons…":"正在搜索蓝牙按键…","Press any S3XY button to pair":"请按任意 S3XY 按键完成配对","Button 1":"按键 1","Button 2":"按键 2","Button 3":"按键 3","Button 4":"按键 4","Single Click":"单击动作","Double Click":"双击动作","Long Press":"长按动作","Unpair":"解除配对","Resume AP automatically after manual lane changes and disengagements.":"打灯变道结束或手动避障接管后，系统自动重新激活 AP 巡航，免除长途反复下拉拨杆或双击滚轮。","AP Resume Delay":"自动恢复延迟时间","Delay after lane change before re-engaging AP":"变道完成且转向回正后，重新恢复 AP 的等待时间","1000 ms (Recommended)":"1000 毫秒 (推荐标准值)","500 ms (Aggressive)":"500 毫秒 (快速恢复)","1500 ms (Gentle)":"1500 毫秒 (平缓恢复)","2000 ms":"2000 毫秒","Brake Safety Arbitration":"刹车双源安全熔断机制","Disable Continuous AP instantly when mechanical brake pedal is pressed":"当检测到驾驶员踩下刹车踏板时，双独立总线源立即熔断退出，杜绝死锁风险","Stalk Double Tap Trigger":"拨杆双击快捷触发","Double tap stalk down to quick engage Continuous AP":"双击下拉拨杆快速切换/激活连续 AP 状态","Eliminate steering wheel nagging during Autopilot operation.":"彻底消除 Autopilot 巡航过程中的转动方向盘提醒，告别蓝屏闪烁报警与脱手惩罚。","TSL9 Protocol Injection (Silent, Zero Resistance)":"TSL9 底盘广播直接覆写 (完全静默、零方向盘阻力)","Mode H":"Mode H 拟人微扭矩","Mode H Tuning":"Mode H 参数微调","Mode H profile tuning and live engine monitor.":"Mode H 拟人微扭矩参数微调与实时引擎状态监控","Right Scroll Assist":"右滚轮防休眠辅助","Periodically pulse right scroll wheel to keep AP alive":"周期性注入右滚轮微脉冲，保持车机长效巡航状态活跃","Interval":"触发间隔时间","15 seconds":"15 秒","30 seconds":"30 秒 (推荐)","45 seconds":"45 秒","60 seconds":"60 秒","Human Simulation Variant":"拟人化微扭矩算法微调","Initiate lane changes with turn stalk without manual wheel torque confirmation.":"轻拨转向灯即直接发起自动变道，彻底免除双手使劲“掰转方向盘确认”的繁琐步骤。","Blinker Cancellation":"变道完成后自动熄灭转向灯","Cancel turn signal automatically after lane change completes":"侦测到车辆进入目标车道回正后，自动发送熄灭转向灯指令","Off-Highway ALC":"非高速公路自动变道 (地面道路)","Enable auto lane change on city streets and non-divided roads":"在城市地面道路和非封闭道路上允许自动变道","TLSSC":"红绿灯与停车标志识别控制","Block TLSSC in NOA":"NOA 状态下拦截红绿灯减速","Country Code Override":"区域代码伪装 (解除 R79 限制)","Country Code Override (R79/Speed)":"区域代码伪装 (解除 R79 限速与变道限制)","Override vehicle region to unlock unrestricted Autopilot features.":"将车机通信区域伪装为新西兰(NZ)或美国(US)，解除国标/欧标强制弯道减速及变道侧向加速度限制。","Disabled (Stock)":"已禁用 (保持原厂逻辑)","New Zealand (NZ) - R79 Unrestricted":"新西兰 (NZ) - 解除 R79 变道曲率限制 (推荐)","United States (US) - Full Autopilot Suite":"美国 (US) - 解除全套限制","Vision Speed Control Suppression":"视觉限速 / 弯道减速拦截","Suppress forced slowing on curved roads and phantom speed drops":"拦截车机视觉强制弯道减速与幽灵限速骤降","Driver Monitoring (DMS) Bypass":"座舱摄像头注意力监控 (DMS) 拦截","Bypass in-cabin camera eye-tracking nag warnings":"拦截座舱摄像头视线偏离报警，解决戴墨镜、夜间或低头时的误报警","Pedal Response":"加速踏板响应模式","AP Accel / Regen":"AP 巡航加速与动能回收","AP Pedal / Regen Profile":"AP 加速与回收特性方案","STOCK":"原厂 (STOCK)","CHILL":"舒适 (CHILL)","SPORT":"运动 (SPORT)","PERFORMANCE":"高性能 (PERFORMANCE)","Standard":"标准","Chill":"舒适","Sport":"运动","Performance":"高性能","Acceleration Mode Toggle":"加速模式切换","Regen Braking":"动能回收力度","System":"系统设置","Features":"功能特性","System & Diagnostic":"系统与硬件诊断","Firmware Version":"固件版本","Uptime":"已连续运行时间","Free Heap / RAM":"可用内存 (Free Heap)","CAN-A Bus Status":"CAN-A 总线状态","CAN-B Bus Status":"CAN-B 总线状态","TX Frames":"发送报文帧数","RX Frames":"接收报文帧数","Error Warning":"总线告警计数","BUS OFF evidence":"BUS OFF 离线事件记录","PREVIOUS BOOT":"上次启动状态","Clear Diagnostics":"清除诊断记录","Over-The-Air Update (OTA)":"OTA 固件在线升级","Choose Firmware .bin":"选择固件文件 (.bin)","No file selected":"未选择任何文件","Upload & Flash":"上传并刷写固件","Reboot Device":"重启硬件模块","Reboot":"重启设备","Banned Car DANGER":"防封车安全保护 (安全熔断)","Research Tools":"研发与实验工具","CAN Traffic Inspection":"CAN 总线流量实时监控","Injection · R79":"R79 解锁注入状态","NOA only":"仅 NOA 状态生效","AP only":"仅 AP 激活时生效","Always":"始终生效","Saved across reboots":"已保存 (重启后保持有效)","Settings unavailable · retrying":"设备未就绪 · 正在重试连接…","PREVIEW CONTROLS":"离线模拟控制台","Home simulator":"主页状态模拟器","AP state":"AP 状态模拟","OFF":"关闭 (OFF)","ENGAGED":"已开启 (ENGAGED)","NOA":"自动导航 (NOA)","Turn controls":"转向控制方式","Stalk":"实体拨杆 (Stalk)","Stalkless":"无拨杆 (按键/屏幕)","Preview data only. Selection does not change firmware settings or send CAN.":"仅供离线交互演示。操作不会改变硬件固件设置，亦不会向车辆总线发送报文。","Save":"保存","Cancel":"取消","Confirm":"确认","Enabled":"已启用","Disabled":"已禁用","Active":"已激活","Inactive":"未激活","Connected":"已连接","Disconnected":"未连接","Success":"操作成功","Failed":"操作失败","Open":"打开","Close":"关闭"};
+  let lang = localStorage.getItem('t2_lang') || 'zh';
+
+  function t(text) {
+    if (!text) return text;
+    const trimmed = text.trim();
+    if (DICT[trimmed]) {
+      return text.replace(trimmed, DICT[trimmed]);
+    }
+    return text;
+  }
+
+  function translateTree(node, toLang) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!node._origText) node._origText = node.nodeValue;
+      if (toLang === 'zh') {
+        const translated = t(node._origText);
+        if (translated !== node.nodeValue) node.nodeValue = translated;
+      } else {
+        if (node._origText && node.nodeValue !== node._origText) node.nodeValue = node._origText;
+      }
+      return;
+    }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      if (['SCRIPT', 'STYLE'].includes(node.tagName)) return;
+      if (node.tagName === 'OPTION') {
+        if (!node._origText) node._origText = node.textContent;
+        node.textContent = toLang === 'zh' ? t(node._origText) : node._origText;
+        return;
+      }
+      if (node.placeholder) {
+        if (!node._origPlaceholder) node._origPlaceholder = node.placeholder;
+        node.placeholder = toLang === 'zh' ? t(node._origPlaceholder) : node._origPlaceholder;
+      }
+      if (node.title) {
+        if (!node._origTitle) node._origTitle = node.title;
+        node.title = toLang === 'zh' ? t(node._origTitle) : node._origTitle;
+      }
+      for (const child of node.childNodes) {
+        translateTree(child, toLang);
+      }
+    }
+  }
+
+  function applyLang(newLang) {
+    lang = newLang;
+    localStorage.setItem('t2_lang', lang);
+    translateTree(document.body, lang);
+    const btn = document.getElementById('langToggleBtn');
+    if (btn) btn.textContent = lang === 'zh' ? '中 / EN' : 'EN / 中';
+  }
+
+  window.t2ToggleLang = () => applyLang(lang === 'zh' ? 'en' : 'zh');
+
+  function initI18n() {
+    const top = document.querySelector('.globaltop');
+    if (top && !document.getElementById('langToggleBtn')) {
+      const btn = document.createElement('button');
+      btn.id = 'langToggleBtn';
+      btn.type = 'button';
+      btn.className = 'langToggle';
+      btn.onclick = window.t2ToggleLang;
+      btn.textContent = lang === 'zh' ? '中 / EN' : 'EN / 中';
+      const live = top.querySelector('.live');
+      if (live) top.insertBefore(btn, live);
+      else top.appendChild(btn);
+    }
+    if (lang === 'zh') {
+      translateTree(document.body, 'zh');
+    }
+    const obs = new MutationObserver(mutations => {
+      if (lang !== 'zh') return;
+      for (const m of mutations) {
+        for (const added of m.addedNodes) {
+          if (added.id === 'langToggleBtn' || added.id === 't2-i18n-style') continue;
+          translateTree(added, 'zh');
+        }
+      }
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initI18n);
+  } else {
+    initI18n();
+  }
+})();
+</script>
 </body></html>
